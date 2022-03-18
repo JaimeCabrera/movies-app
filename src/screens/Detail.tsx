@@ -1,6 +1,7 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {
+  ActivityIndicator,
   Dimensions,
   Image,
   ScrollView,
@@ -10,6 +11,8 @@ import {
 } from 'react-native';
 // import {Movie} from '../interfaces/movieInterface';
 import {RootStackParmas} from '../navigation/Navigation';
+import {useMovieDetails} from '../hooks/useMovieDetails';
+import {MovieDetails} from '../components/MovieDetails';
 
 const screenHeight = Dimensions.get('screen').height;
 
@@ -18,6 +21,8 @@ interface Props extends NativeStackScreenProps<RootStackParmas, 'Details'> {}
 export const Detail = ({route}: Props) => {
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+  const {isLoading, cast, movieFull} = useMovieDetails(movie.id);
 
   return (
     <ScrollView>
@@ -28,6 +33,15 @@ export const Detail = ({route}: Props) => {
         <Text style={styles.subTitle}>{movie.original_title}</Text>
         <Text style={styles.title}>{movie.title}</Text>
       </View>
+      {isLoading ? (
+        <ActivityIndicator
+          size={35}
+          color="grey"
+          style={styles.activityIndicator}
+        />
+      ) : (
+        <MovieDetails movieFull={movieFull!} cast={cast} />
+      )}
     </ScrollView>
   );
 };
@@ -36,7 +50,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '100%',
     overflow: 'hidden',
-    height: screenHeight * 0.7,
+    height: screenHeight * 0.75,
     shadowColor: '#000',
     paddingBottom: 1,
     shadowOffset: {
@@ -47,8 +61,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 8,
-    borderBottomEndRadius: 20,
-    borderBottomStartRadius: 20,
+    borderBottomEndRadius: 10,
+    borderBottomStartRadius: 10,
   },
   image: {
     flex: 1,
@@ -64,5 +78,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  activityIndicator: {
+    marginTop: 20,
   },
 });

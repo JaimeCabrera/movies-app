@@ -15,11 +15,31 @@ export const Navigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        contentStyle: {backgroundColor: 'white'},
-        headerShown: false,
+        contentStyle: {
+          backgroundColor: '#f2f3f4',
+        },
       }}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Details" component={Detail} />
+      <Stack.Screen
+        name="Home"
+        options={{headerShown: false}}
+        component={Home}
+      />
+      <Stack.Screen
+        name="Details"
+        options={{
+          contentStyle: {
+            backgroundColor: 'white',
+          },
+          headerBackVisible: true,
+          headerTransparent: true,
+          headerStyle: {
+            backgroundColor: 'rgba( 93, 109, 126,  .0)',
+          },
+          headerTitle: '',
+          headerTintColor: 'white',
+        }}
+        component={Detail}
+      />
     </Stack.Navigator>
   );
 };
