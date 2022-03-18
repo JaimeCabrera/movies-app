@@ -27,7 +27,9 @@ export const CardMovie = ({movie, width = 300, height = 420}: Props) => {
 const styles = StyleSheet.create({
   cardContainer: {
     marginTop: 20,
-    marginHorizontal: 8,
+    marginHorizontal: 4,
+    paddingBottom: 20,
+    paddingHorizontal: 5,
   },
   image: {
     flex: 1,
