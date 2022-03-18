@@ -13,7 +13,7 @@ export const Navigation = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen name="Details" component={Detail} />
     </Stack.Navigator>
   );
 };
