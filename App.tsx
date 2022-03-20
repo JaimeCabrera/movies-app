@@ -2,12 +2,14 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {Navigation} from './src/navigation/Navigation';
+import {Fade} from './src/screens/Fade';
 // import {LogBox} from 'react-native';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Navigation />
+      {/* <Navigation /> */}
+      <Fade />
     </NavigationContainer>
   );
 };
